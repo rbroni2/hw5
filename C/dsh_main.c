@@ -41,8 +41,8 @@ int main(int argc, char** argv) {
 	    
 	    if(stat(SessionFolder,&Exists) == 0 && S_ISDIR(Exists.st_mode)){
 		    file = 1;
-		    printf("%i\n", Session);
-		    refresh();
+		    //printf("%i\n", Session);
+		    //refresh();
 	    }else{
 		    Session--;
 	    }
@@ -98,7 +98,7 @@ int main(int argc, char** argv) {
 	 snprintf(outputFile, 10000, "%s/%i.stdout", SessionFolder, numCommands-1);
           Output = fopen(outputFile, "r");
 	  if(Output == NULL){
-		  printf("sorry bud\n");
+	//	  printf("sorry bud\n");
 	  }else{	  
 	  char c[1000];
 	  int loop = 0;

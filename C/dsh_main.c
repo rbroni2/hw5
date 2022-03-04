@@ -41,18 +41,18 @@ int main(int argc, char** argv) {
 	    
 	    if(stat(SessionFolder,&Exists) == 0 && S_ISDIR(Exists.st_mode)){
 		    file = 1;
-		    //printf("%i\n", Session);
-		    //refresh();
+		    printf("%i\n", Session);
+		    refresh();
 	    }else{
 		    Session--;
 	    }
     }
    refresh();
-    // box(commands,0,0);
+     box(commands,0,0);
   //  box(output,0,0);
   //  wrefresh(commands);
   mvwprintw(output, 0,0,"Output Below and to the right:");
-  mvwprintw(commands,0,0,"Input and Commands Below:");
+  mvwprintw(commands,1,2,"Input and Commands Below:");
     mvwprintw(commands, 40, 4, "dsh> ");//print at bottom of screen using mvwprintw
     
    // set up boxes here
@@ -89,6 +89,7 @@ int main(int argc, char** argv) {
 //	 memset(line, 0, 100);
 	wmove(commands,40,8);
 	wclrtoeol(commands);
+	box(commands,0,0);
 	 wrefresh(commands);
 //	 mvwprintw(commands,35-numCommands,8,line);
 	 memset(line,0,100);
@@ -98,7 +99,7 @@ int main(int argc, char** argv) {
 	 snprintf(outputFile, 10000, "%s/%i.stdout", SessionFolder, numCommands-1);
           Output = fopen(outputFile, "r");
 	  if(Output == NULL){
-	//	  printf("sorry bud\n");
+		  printf("sorry bud\n");
 	  }else{	  
 	  char c[1000];
 	  int loop = 0;
@@ -122,6 +123,8 @@ int main(int argc, char** argv) {
 	 line[strlen(line)-1] = 0;
 	 mvwprintw(commands, 40, 8, line);
 	 wdelch(commands);
+	 wmove(commands,40,8+strlen(line));
+	 waddch(commands, ' ');
          wrefresh(commands);	
 //	 mvwprintw(commands,30,8,"BACKSPACE WOOOHOOO");
         }else if(input == 0x03){
@@ -141,6 +144,7 @@ int main(int argc, char** argv) {
 		 char* p = "*";
 		 wmove(commands,40,8);
 		 wclrtoeol(commands);
+		 box(commands,0,0);
 		mvwprintw(commands, 40,8,line);
 		mvwprintw(commands, 34-arrow, 7,p);
 	  	wrefresh(commands);
@@ -183,6 +187,7 @@ int main(int argc, char** argv) {
 	//		mvwprintw(commands,40,8,line);
 			wmove(commands,40,8);
 			wclrtoeol(commands);
+			box(commands,0,0);
 		//	wmove(commands,40,8);
 			mvwprintw(commands,40,8,line);
 			mvwprintw(commands, 34-arrow,7,air2);
@@ -202,6 +207,7 @@ int main(int argc, char** argv) {
 	         	cursor = strlen(line);
 			wmove(commands,40,8);
 		        wclrtoeol(commands);
+			box(commands,0,0);
 			mvwprintw(commands, 40,8,line);
 			wrefresh(commands);
 		}

@@ -41,7 +41,7 @@ int main(int argc, char** argv) {
 	    
 	    if(stat(SessionFolder,&Exists) == 0 && S_ISDIR(Exists.st_mode)){
 		    file = 1;
-		    printf("%i\n", Session);
+		   // printf("%i\n", Session);
 		    refresh();
 	    }else{
 		    Session--;
